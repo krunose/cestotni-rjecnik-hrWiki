@@ -6,15 +6,17 @@ SIROVI_IZVOR = "čisti-izlaz"           # Vaš sirovi vezani tekst nakon sed-a
 STARI_RJECNIK = "../../no-true-casing-čestotni-rječnik-hrWiki" # Vaš trenutni rječnik s GitHuba
 NOVI_RJECNIK = "čestotni-rječnik-hrWiki"
 
-# Skupovi za praćenje pozicija velikih slova
+# Brojači za praćenje svih pojavljivanja riječi na Wikipediji
+brojac_velikih_u_sredini = Counter()
+brojac_malih_u_sredini = Counter()
 velika_slova_na_pocetku = set()
-velika_slova_u_sredini = set()
 
-# POPRAVLJENI REGEXI: Znak * omogućuje ispravno hvatanje jednoslovnih riječi (U, I, O, A)
+# Regexi za precizno hvatanje pozicija u tekstu
 regex_pocetak = re.compile(r'(?:^|[.!?]\s+)[\\["\'(„\s-]*([A-ZČĆŽŠĐ][a-zčćžšđ]*)')
 regex_sve_velike = re.compile(r'\b[A-ZČĆŽŠĐ][a-zčćžšđ]*\b')
+regex_sve_male = re.compile(r'\b[a-zčćžšđ]+\b')
 
-print("1. Korak: Mapiram pozicije velikih slova na Wikipediji...")
+print("1. Korak: Prolazim kroz sirovi tekst Wikipedije i analiziram statistiku...")
 try:
     with open(SIROVI_IZVOR, "r", encoding="utf-8") as f:
         for linija in f:
@@ -23,24 +25,52 @@ try:
             for rijec in pocetni_oblici:
                 velika_slova_na_pocetku.add(rijec)
             
-            # B) Nađi sve riječi s velikim slovom u toj liniji
+            # B) Broji sve riječi s velikim slovom koje NISU na početku rečenice
             sve_velike = regex_sve_velike.findall(linija)
             for rijec in sve_velike:
-                # Ako je riječ nađena u liniji, a NIJE bila na početku rečenice,
-                # to znači da se pojavila u sredini rečenice s velikim slovom!
                 if rijec not in pocetni_oblici:
-                    velika_slova_u_sredini.add(rijec)
+                    brojac_velikih_u_sredini[rijec] += 1
+            
+            # C) Broji sva pojavljivanja riječi u malom slovu
+            sve_male = regex_sve_male.findall(linija)
+            for rijec in sve_male:
+                brojac_malih_u_sredini[rijec] += 1
 except FileNotFoundError:
-    print(f"Pogreška: Datoteka '{SIROVI_IZVOR}' nije pronađena!")
+    print(f"Pogreška: Datoteka '{SIROVI_IZVOR}' (" + SIROVI_IZVOR + ") nije pronađena!")
     exit()
 
-# STROGI UVJET: Riječ se smije smanjiti SAMO ako je bila na početku rečenice,
-# a NIJEDNOM se u cijelom dumpu nije pojavila s velikim slovom u sredini rečenice.
-rijeci_za_smanjivanje = velika_slova_na_pocetku - velika_slova_u_sredini
+print("2. Korak: Određujem koje riječi idu u malo slovo na temelju statističkog praga...")
+rijeci_za_smanjivanje = set()
 
-print(f"Analiza gotova. Od svih riječi, njih {len(rijeci_za_smanjivanje)} su ISKLJUČIVO na početku rečenice.")
+for rijec in velika_slova_na_pocetku:
+    malo_oblik = rijec.lower()
+    
+    # Prisilno smanji sve jednoslovne riječi (U, I, O, A)
+    if len(rijec) == 1:
+        rijeci_za_smanjivanje.add(rijec)
+        continue
+        
+    pojavljivanja_veliko_sredina = brojac_velikih_u_sredini[rijec]
+    pojavljivanja_malo_sredina = brojac_malih_u_sredini[malo_oblik]
+    
+    ukupno_u_sredini = pojavljivanja_veliko_sredina + pojavljivanja_malo_sredina
+    
+    if ukupno_u_sredini > 0:
+        # Računamo udio malog slova u sredini rečenice
+        udio_malog_slova = pojavljivanja_malo_sredina / ukupno_u_sredini
+        
+        # Ako se riječ u sredini rečenice piše malim slovom u više od 95% slučajeva,
+        # onda su ona velika slova u sredini bila samo naslovi ili stilske iznimke!
+        if udio_malog_slova > 0.95:
+            rijeci_za_smanjivanje.add(rijec)
+    else:
+        # Ako se riječ UOPĆE ne pojavljuje u sredini rečenice malim slovom (udio je 0),
+        # ali se pojavljuje s velikim, to je sigurno vlastito ime (npr. Chalamet, Zagreb) i NE smanjujemo ga.
+        continue
 
-print("2. Korak: Učitavam stari rječnik i primjenjujem strogi ispravak...")
+print(f"Analiza gotova. U malo slovo prebacujem {len(rijeci_za_smanjivanje)} jedinstvenih riječi.")
+
+print("3. Korak: Učitavam stari rječnik i primjenjujem ispravak...")
 konacni_rjecnik = {}
 
 try:
@@ -62,18 +92,16 @@ try:
             except ValueError:
                 continue
             
-            # Ako riječ zadovoljava naš strogi uvjet, prebaci je u malo slovo i zbroji frekvenciju
             if rijec in rijeci_za_smanjivanje:
                 verzija_s_malim = rijec.lower()
                 konacni_rjecnik[verzija_s_malim] = konacni_rjecnik.get(verzija_s_malim, 0) + freq
             else:
-                # Vlastita imena (Hrvatska, Zagreb) koja se pojavljuju u sredini rečenica ostaju velika!
                 konacni_rjecnik[rijec] = konacni_rjecnik.get(rijec, 0) + freq
 except FileNotFoundError:
-    print(f"Pogreška: Datoteka '{STARI_RJECNIK}' nije pronađena!")
+    print(f"Pogreška: Datoteka '{STARI_RJECNIK}' (" + STARI_RJECNIK + ") nije pronađena!")
     exit()
 
-print("3. Korak: Sortiram i spremam novi strogi čestotnik...")
+print("4. Korak: Sortiram i spremam novi čestotnik...")
 sortirani_rjecnik = sorted(konacni_rjecnik.items(), key=lambda x: x[1], reverse=True)
 
 with open(NOVI_RJECNIK, "w", encoding="utf-8") as f:
