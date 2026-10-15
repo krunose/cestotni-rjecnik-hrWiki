@@ -3,7 +3,7 @@
 Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjelokupnog korpusa tekstova s **hrvatske Wikipedije**. Rječnik je koristan za jezična istraživanja, obradu prirodnog jezika (NLP), razvoj OCR sustava, provjeru pravopisa i druge računalno-lingvističke primjene.
 
 ## Statistika korpusa
-* **Datum preuzete base (dump):** 1. listopad 2026 ([preuzimanje](https://dumps.wikimedia.org/other/mediawiki_content_current/))
+* **Datum stvaranja baze (dump):** 1. listopad 2026 ([preuzimanje](https://dumps.wikimedia.org/other/mediawiki_content_current/))
 * **Ukupan broj članaka:** između 235 000 i 236 000
 * **Ukupan broj riječi (tokena):** 53 629 419
 * **Broj jedinstvenih pojavnica:** 1 487 585
