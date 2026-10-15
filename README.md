@@ -27,7 +27,7 @@ Skripta `izradi-čestotni-rječnik.py` izrađena je pomoću umjetne inteligencij
 
 ## Licenca i izvori
 * **Izvor podataka:** Sadržaj je preuzet s [Hrvatske Wikipedije](https://wikipedia.org) i licenciran je pod CC BY-SA 4.0.
-* **Licenca koda/rječnika:** Ovaj projekt je pod licencijom LGPLv3+ (sam rječnik, ali i sve popratne skripte i alati.)
+* **Licenca koda/rječnika:** Ovaj projekt je pod licencijom LGPLv3+ (sam rječnik, ali i popratni alati.)
 
 Krunoslav Šebetić (listopad 2026.)
 kruno.se@gmx.com
