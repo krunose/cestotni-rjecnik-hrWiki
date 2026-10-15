@@ -21,7 +21,7 @@ Prilikom ekstrakcije i čišćenja teksta primijenjeni su sljedeći koraci:
 * **Uklanjanje koda:** Čišćenje svih Wikipedijinih oznaka, predložaka i slično koristeći `pythonov` modul `wikiextractor`. Čišćenje koda provedeno je naredbom (GNU/Linux) `pipx run wikiextractor hrwiki-2026-10-01-p1p819304.xml --no-templates -b 3000M -o wiki_privremeno`
 * **Uklanjanje preostaloga koda:** nakon `wikiextractora` ostali su određene oznake poput `<doc>`, čišćenje je provedeno na operacijskom sustavu GNU/Linux naredbom `sed 's/<[^>]*>//g' wiki_00 > čisti-izlaz`
 * **Čišćenje:** Uklonjeni su interpunkcijski znakovi, specijalni simboli i brojevi skriptom [`izradi-čestotni-rječnik.py`](https://github.com/krunose/cestotni-rjecnik-hrWiki/tree/main/tools). Skripta uklanja interpunkciju i brojeve, broji i izvozi jedinstvene pojavnice.
-* **Lematizacija** nije provedena jer je `python` i modul `classla` izvan naših trenutačnih mogućnosti, a baza podataka je prevelika za računalo na kojemu radimo  (skripta `izradi-čestotni-rječnik.py` izrađena je uz pomoć umjetne inteligencije)
+* **Lematizacija** nije provedena jer je `python` i modul `classla` izvan naših trenutačnih mogućnosti, a baza podataka je prevelika za računalo na kojemu radimo
 * **veliko i malo slovo** Rješilo se tako što se veliko i malo slovo u prvom prolazu kroz sirov tekst (dump) nije diralo. Zatim se u drugom prolazu usporedilo unakrsnim uspređivanjem (radi homonima i zaštite vlastitih imena) ponovno provjerilo nalaze li se riječi upisane velikim slovom isključivo velikim slovom na početku rečenice, a inače malim. Ako da, pretvorilo ih se u mala slova, ako se pak pojavljuju velikim slovom i u sredini rečenice, nije ih se diralo.
 
 ## Algoritam za ispravljanje velikoga i maloga slova
