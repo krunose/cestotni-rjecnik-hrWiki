@@ -10,9 +10,9 @@ NOVI_RJECNIK = "čestotni-rječnik-hrWiki"
 velika_slova_na_pocetku = set()
 velika_slova_u_sredini = set()
 
-# ISPRAVLJEN REGEX: Dodana je kosa crta \[ ispred prve zagrade da se izbjegne FutureWarning
-regex_pocetak = re.compile(r'(?:^|[.!?]\s+)[\\["\'(„\s-]*([A-ZČĆŽŠĐ][a-zčćžšđ]+)')
-regex_sve_velike = re.compile(r'\b[A-ZČĆŽŠĐ][a-zčćžšđ]+\b')
+# POPRAVLJENI REGEXI: Znak * omogućuje ispravno hvatanje jednoslovnih riječi (U, I, O, A)
+regex_pocetak = re.compile(r'(?:^|[.!?]\s+)[\\["\'(„\s-]*([A-ZČĆŽŠĐ][a-zčćžšđ]*)')
+regex_sve_velike = re.compile(r'\b[A-ZČĆŽŠĐ][a-zčćžšđ]*\b')
 
 print("1. Korak: Mapiram pozicije velikih slova na Wikipediji...")
 try:
