@@ -21,7 +21,7 @@ Prilikom ekstrakcije i čišćenja teksta primijenjeni su sljedeći koraci:
 * **Uklanjanje preostaloga koda:** nakon `wikiextractora` ostali su određene oznake poput `<doc>`, čišćenje je provedeno na operacijskom sustavu GNU/Linux naredbom `sed 's/<[^>]*>//g' wiki_00 > čisti-izlaz`
 * **Čišćenje:** Uklonjeni su interpunkcijski znakovi, specijalni simboli i brojevi skriptom [`izradi-čestotni-rječnik.py`](https://github.com/krunose/cestotni-rjecnik-hrWiki/tree/main/tools). Skripta uklanja interpunkciju i brojeve, broji i izvozi jedinstvene pojavnice.
 * **Lemantizacija** nije provedena jer ne postoji dostupan i otvoren alat za ovaj zadatak.
-* **veliko i malo slovo** nije se diralo kako se ne bi uništilo veliko i malo slovo u osobnim imenima. Nedostatak pristupa je što su velika slova ostala i na početku rečenice. Međutim nije teško programski učitati popis, provjeriti postoji li za određenu riječ (oblik) upis velikim i malim slovom, zbrojiti pojavljivanja i napraviti novi čestotni popis; no to je na onome kome to treba.
+* **veliko i malo slovo** nije se diralo kako se ne bi uništilo veliko slovo u osobnim imenima. Nedostatak je pristupa činjenica da su velika slova ostala i na početku rečenice. Međutim nije teško programski učitati popis, provjeriti postoji li za određenu riječ (oblik) i velikim i malim slovom, zbrojiti pojavljivanja i napraviti novi čestotni popis; no to je na onome kome to treba.
 
 Skripta `izradi-čestotni-rječnik.py` izrađena je pomoću umjetne inteligencije kako bi se ubrzao proces stvaranja čestotnoga rječnika.
 
