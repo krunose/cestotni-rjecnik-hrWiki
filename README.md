@@ -6,13 +6,14 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 * **Datum stvaranja baze (dump):** 1. listopad 2026 ([preuzimanje](https://dumps.wikimedia.org/other/mediawiki_content_current/))
 * **Ukupan broj članaka:** između 235 000 i 236 000
 * **Ukupan broj riječi (tokena):** 53 629 419
-* **Broj jedinstvenih pojavnica:** 1 487 585
+* **Broj jedinstvenih pojavnica:** 1 412 870
 
 ## Oblik izlaznih podataka
+
 | frekvencija | riječ |
 | :--- | :--- | 
-| 2197625 | je |
-| 22969 | hrvatski |
+| 22 969 | hrvatski |
+| 2 | čestotni |
 | 780 | rječnik |
 
 ## Metodologija obrade
