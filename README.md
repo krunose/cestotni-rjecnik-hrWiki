@@ -19,7 +19,7 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 Prilikom ekstrakcije i čišćenja teksta primijenjeni su sljedeći koraci:
 * **Uklanjanje koda:** Čišćenje svih Wikipedijinih oznaka, predložaka i slično koristeći `pythonov` modul `wikiextractor`. Čišćenje koda provedeno je naredbom (GNU/Linux) `pipx run wikiextractor hrwiki-2026-10-01-p1p819304.xml --no-templates -b 3000M -o wiki_privremeno`
 * **Uklanjanje preostaloga koda:** nakon `wikiextractora` ostali su određene oznake poput `<doc>`, čišćenje je provedeno na operacijskom sustavu GNU/Linux naredbom `sed 's/<[^>]*>//g' wiki_00 > čisti-izlaz`
-* **Čišćenje:** Uklonjeni su interpunkcijski znakovi, specijalni simboli i brojevi skriptom [`izradi-čestotni-rječnik.py`](https://github.com/krunose/cestotni-rjecnik-hrWiki/tree/main/tools). Skripta uklanja interpunkciju i brojeve, uzima pojavnice, uzima i broji pojavnice i izvozi jedinstvene pojavnice.
+* **Čišćenje:** Uklonjeni su interpunkcijski znakovi, specijalni simboli i brojevi skriptom [`izradi-čestotni-rječnik.py`](https://github.com/krunose/cestotni-rjecnik-hrWiki/tree/main/tools). Skripta uklanja interpunkciju i brojeve, broji i izvozi jedinstvene pojavnice.
 * **Lemantizacija** nije provedena jer ne postoji dostupan i otvoren alat za ovaj zadatak.
 * **veliko i malo slovo** nije se diralo kako se ne bi uništilo veliko i malo slovo u osobnim imenima. Nedostatak pristupa je što su velika slova ostala i na početku rečenice. Međutim nije teško programski učitati popis, provjeriti postoji li za određenu riječ (oblik) upis velikim i malim slovom, zbrojiti pojavljivanja i napraviti novi čestotni popis; no to je na onome kome to treba.
 
