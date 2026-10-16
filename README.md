@@ -10,17 +10,18 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 
 ## Oblik izlaznih podataka
 
-| frekvencija | riječ |
-| :--- | :--- | 
-| 22 969 | hrvatski |
-| 2 | čestotni |
-| 780 | rječnik |
+| Rang    | Apsolutna<br>frekvencija | Relativna frekvencija % | IPM    | Kumulativno % | Riječ    |
+| :------ | :----------------------- | :---------------------- | :----- | :------------ | :------- |
+| 125     | 22 969                   | 0.0433%                 | 432.51 | 31.95%        | hrvatski |
+| 7008    | 780                      | 0.0015%                 | 14.69  | 65.15%        | rječnik  |
+| 712 136 | 2                        | 0.0000%                 | 0.04   | 95.21%        | čestotni |
 
 ## Metodologija obrade
 Prilikom ekstrakcije i čišćenja teksta primijenjeni su sljedeći koraci:
 * **Uklanjanje koda:** Čišćenje svih Wikipedijinih oznaka, predložaka i slično koristeći `pythonov` modul `wikiextractor`. Čišćenje koda provedeno je naredbom (GNU/Linux) `pipx run wikiextractor hrwiki-2026-10-01-p1p819304.xml --no-templates -b 3000M -o wiki_privremeno`
 * **Uklanjanje preostaloga koda:** nakon `wikiextractora` ostali su određene oznake poput `<doc>`, čišćenje je provedeno na operacijskom sustavu GNU/Linux naredbom `sed 's/<[^>]*>//g' wiki_00 > čisti-izlaz`
 * **Čišćenje:** Uklonjeni su interpunkcijski znakovi, specijalni simboli i brojevi skriptom [`izradi-čestotni-rječnik.py`](https://github.com/krunose/cestotni-rjecnik-hrWiki/tree/main/tools). Skripta uklanja interpunkciju i brojeve, broji i izvozi jedinstvene pojavnice.
+* **frekvencijska analiza** provedena je skriptom `čestotna-analiza.py` 
 * **Lematizacija** nije provedena jer je `python` i modul `classla` izvan naših trenutačnih mogućnosti, a baza podataka je prevelika za računalo na kojemu radimo
 * **veliko i malo slovo** Rješilo se tako što se veliko i malo slovo u prvom prolazu kroz sirov tekst (dump) nije diralo. Zatim se u drugom prolazu usporedilo unakrsnim uspređivanjem (radi homonima i zaštite vlastitih imena) ponovno provjerilo nalaze li se riječi upisane velikim slovom isključivo velikim slovom na početku rečenice, a inače malim. Ako da, pretvorilo ih se u mala slova, ako se pak pojavljuju velikim slovom i u sredini rečenice, nije ih se diralo.
 
