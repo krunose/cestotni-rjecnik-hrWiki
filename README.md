@@ -16,6 +16,8 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 | 7008    | 780                      | 0.0015%                 | 14.69  | 65.15%        | rječnik  |
 | 712 136 | 2                        | 0.0000%                 | 0.04   | 95.21%        | čestotni |
 
+**Potpuno statistički procesuiran rječnik** nalazi se u arhivi `statistički-procesuiran-čestotni-rječnik-hrWiki.zip`, naime u obliku obične tekstne datoteke prevelik je izravno postavljanje na GitHub; ograničenje je 25 MB, a sam rječnik sa statističkim podatcima je dvostruko veći.
+
 Podatci su razdvojeni tabulatorom tako da su i više nego pogodni za uvoz u program za izradu i obradu proračunskih tablica kao što je LibreOffice Calc. Treba samo biti oprezan jer je popis riječi veći negoli Calc može imati redaka (maksimum: 1 048 576). Nije probano u Microsoftovu Excelu, ali rijetko kada će tko trebati analizirati 1 412 879 jedinstvenih pojavnica, posebice zato što su riječi na dnu datoteke statistički irelevantne, osim ako se ne analizira baš njih; u tom se slučaju može odrezati vrh datoteke: `tail -n 500000 čestotni-rječnik-hrWiki > dno-rječnika`.
 
 U programu za obradbu proračunskih tablica moguće je proširiti postotak relativne frekvencije kako bi se dobili relevantni podatci; za LibreOffice Calc to je formula `=(<apsolutna frekvencija> / 53106215) * 100` i poveća se broj decimalnih mjesta koliko već treba.
