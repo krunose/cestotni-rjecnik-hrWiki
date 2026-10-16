@@ -4,8 +4,8 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 
 ## Statistika korpusa
 * **Datum stvaranja baze (dump):** 1. listopad 2026 ([preuzimanje](https://dumps.wikimedia.org/other/mediawiki_content_current/))
-* **Ukupan broj članaka:** između 235 000 i 236 000
-* **Ukupan broj riječi (tokena):** 53 629 419
+* **Ukupan broj članaka:** između 235 000 i 236 000 (prema procjeni umjetne inteligencije na dan 15. listopada 2026.)
+* **Ukupan broj riječi (tokena):** 53 106 215 (`wc -w`)
 * **Broj jedinstvenih pojavnica:** 1 412 870
 
 ## Oblik izlaznih podataka
