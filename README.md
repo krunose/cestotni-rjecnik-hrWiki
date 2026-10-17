@@ -17,7 +17,7 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 | 7008    | 780                      | 0.0015%                 | 14.69  | 65.15%        | rječnik  | rječnik  |
 | 712 136 | 2                        | 0.0000%                 | 0.04   | 95.21%        | čestotni | čestotni |
 
-**Potpuno statistički procesuiran rječnik** nalazi se u arhivi `statistički-procesuiran-čestotni-rječnik-hrWiki.zip`, naime u obliku obične tekstne datoteke prevelik je izravno postavljanje na GitHub; ograničenje je 25 MB, a sam rječnik sa statističkim podatcima je dvostruko veći.
+**Potpuno statistički procesuiran rječnik** nalazi se u arhivi `čestotni-rječnik-hrWiki.zip`, naime u obliku obične tekstne datoteke prevelik je izravno postavljanje na GitHub; ograničenje je 25 MB, a sam rječnik sa statističkim podatcima je dvostruko veći.
 
 Podatci su razdvojeni tabulatorom tako da su i više nego pogodni za uvoz u program za izradu i obradu proračunskih tablica kao što je LibreOffice Calc. Treba samo biti oprezan jer je popis riječi veći negoli Calc može imati redaka (maksimum: 1 048 576). Nije probano u Microsoftovu Excelu, ali rijetko kada će tko trebati analizirati 1 412 879 jedinstvenih pojavnica, posebice zato što su riječi na dnu datoteke statistički irelevantne, osim ako se ne analizira baš njih; u tom se slučaju može odrezati vrh datoteke: `tail -n 500000 čestotni-rječnik-hrWiki > dno-rječnika`.
 
@@ -51,8 +51,33 @@ Nedostataka u rječniku vjerojatno ima još, ali nemamo sklopovlje za pokretanje
 Alate pisane programskim jezikom `pyhton` izradila je umjetna inteligencija jer baratam samo programskim jezikom `PHP`. Dio teksta `Algoritam za ispravljanje velikoga i maloga slova` napisala je također umjetna inteligencija prema mojim uputama i ispravljanjima. Čovjek je osmislio algoritam, ali je umjetna inteligencija to pretočila u `pyhton` i objasnila vlastiti kôd.
 
 ## Licenca i izvori
-* **Izvor podataka:** Sadržaj je preuzet s [Hrvatske Wikipedije](https://wikipedia.org) i licenciran je pod CC BY-SA 4.0.
-* **Licenca koda/rječnika:** Ovaj projekt je pod licencijom LGPLv3+ (sam rječnik, ali i popratni alati.)
+
+Ovaj projekt kombinira podatkovne skupove otvorenog koda i računalno-lingvističke alate. Svi ugrađeni izvori i izvedeni podatci usklađeni su s uvjetima Creative Commons ShareAlike licenciranja.
+
+### Izvori podataka i modela
+
+| Izvor / Alat | Licenca | Opis korištenja |
+| :--- | :--- | :--- |
+| **Hrvatska Wikipedija** | [CC BY-SA 4.0](https://creativecommons.org) | Izvor cjelokupnog tekstualnog korpusa (dump od 1. listopada 2026.) koji služi kao temelj za izradu rječnika. |
+| **Korpus hr500k (v2.0)** | [CC BY-SA 4.0](https://creativecommons.org) | Korišten za prvu fazu lematizacije unakrsnim mapiranjem jedinstvenih pojavnica. |
+| **CLASSLA-Stanza model** | [CC BY-SA 4.0](https://creativecommons.org) | Python modul primijenjen za strojnu obradu i kontekstualnu lematizaciju preostalih nelematiziranih riječi. |
+
+### Atribucija (Navođenje autora)
+
+U skladu s uvjetima licenci CC BY-SA 4.0, u nastavku su navedeni službeni izvori i citati za korištene jezične resurse:
+
+1. **Hrvatska Wikipedija:** Sadržaj je preuzet s [hr.wikipedia.org](https://wikipedia.org) ([dump](https://dumps.wikimedia.org/other/mediawiki_content_current/))).
+2. **Korpus hr500k:** Ljubešić, Nikola; et al. (2023). *Croatian linguistic training corpus hr500k 2.0*. Slovenian language technologies research infrastructure CLARIN.SI. Dostupno na: [http://handle.net](http://handle.net).
+3. **CLASSLA alat:** Terčon, Luka; et al. (2023). *The CLASSLA-Stanza model for lemmatisation of standard Croatian 2.1*. Dostupno na CLARIN.SI repozitoriju.
+
+### Licenca koda i rječnika
+
+Ovaj projekt (što uključuje sam čestotni rječnik, prateće baze i sve priložene skripte u repozitoriju) licenciran je pod:
+
+* **[GNU Lesser General Public License v3.0 ili novija (LGPLv3+)](https://gnu.org)**
+
+**Zašto ova licenca?** 
+Prema pravilima Creative Commons CC BY-SA 4.0 licence, izvedena djela moraju se dijeliti pod istim ili kompatibilnim uvjetima (ShareAlike). Licenca LGPLv3 službeno je priznata od strane organizacije Creative Commons kao kompatibilna nizvodna licenca za prenošenje CC BY-SA 4.0 sadržaja. Ona osigurava copyleft zaštitu (kod i rječnik ostaju trajno slobodni za zajednicu), a istovremeno omogućuje jednostavnu integraciju u druge lingvističke i softverske sustave.
 
 Krunoslav Šebetić (listopad 2026.)
 kruno.se@gmx.com
