@@ -66,7 +66,7 @@ Ovaj projekt kombinira podatkovne skupove otvorenog koda i računalno-lingvisti�
 
 U skladu s uvjetima licenci CC BY-SA 4.0, u nastavku su navedeni službeni izvori i citati za korištene jezične resurse:
 
-1. **Hrvatska Wikipedija:** Sadržaj je preuzet s [hr.wikipedia.org](https://wikipedia.org) ([dump](https://dumps.wikimedia.org/other/mediawiki_content_current/))).
+1. **Hrvatska Wikipedija:** Sadržaj je preuzet s [hr.wikipedia.org](https://wikipedia.org) ([dump](https://dumps.wikimedia.org/other/mediawiki_content_current/)).
 2. **Korpus hr500k:** Ljubešić, Nikola; et al. (2023). *Croatian linguistic training corpus hr500k 2.0*. Slovenian language technologies research infrastructure CLARIN.SI. Dostupno na: [http://handle.net](http://handle.net).
 3. **CLASSLA alat:** Terčon, Luka; et al. (2023). *The CLASSLA-Stanza model for lemmatisation of standard Croatian 2.1*. Dostupno na CLARIN.SI repozitoriju.
 
