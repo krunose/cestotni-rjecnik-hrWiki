@@ -11,11 +11,11 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 
 ## Oblik izlaznih podataka
 
-| Rang    | Apsolutna<br>frekvencija | Relativna frekvencija % | IPM    | Kumulativno % | Riječ    |
-| :------ | :----------------------- | :---------------------- | :----- | :------------ | :------- |
-| 125     | 22 969                   | 0.0433%                 | 432.51 | 31.95%        | hrvatski |
-| 7008    | 780                      | 0.0015%                 | 14.69  | 65.15%        | rječnik  |
-| 712 136 | 2                        | 0.0000%                 | 0.04   | 95.21%        | čestotni |
+| Rang    | Apsolutna<br>frekvencija | Relativna frekvencija % | IPM    | Kumulativno % | Riječ    | Lema     |
+| :------ | :----------------------- | :---------------------- | :----- | :------------ | :------- | :------- |
+| 125     | 22 969                   | 0.0433%                 | 432.51 | 31.95%        | hrvatski | hrvatski |
+| 7008    | 780                      | 0.0015%                 | 14.69  | 65.15%        | rječnik  | rječnik  |
+| 712 136 | 2                        | 0.0000%                 | 0.04   | 95.21%        | čestotni | čestotni |
 
 **Potpuno statistički procesuiran rječnik** nalazi se u arhivi `statistički-procesuiran-čestotni-rječnik-hrWiki.zip`, naime u obliku obične tekstne datoteke prevelik je izravno postavljanje na GitHub; ograničenje je 25 MB, a sam rječnik sa statističkim podatcima je dvostruko veći.
 
@@ -29,7 +29,7 @@ Prilikom ekstrakcije i čišćenja teksta primijenjeni su sljedeći koraci:
 * **Uklanjanje preostaloga koda:** nakon `wikiextractora` ostali su određene oznake poput `<doc>`, čišćenje je provedeno na operacijskom sustavu GNU/Linux naredbom `sed 's/<[^>]*>//g' wiki_00 > čisti-izlaz`
 * **Čišćenje:** Uklonjeni su interpunkcijski znakovi, specijalni simboli i brojevi skriptom [`izradi-čestotni-rječnik.py`](https://github.com/krunose/cestotni-rjecnik-hrWiki/tree/main/tools). Skripta uklanja interpunkciju i brojeve, broji i izvozi jedinstvene pojavnice.
 * **frekvencijska analiza** provedena je skriptom `čestotna-analiza.py` 
-* **Lematizacija** nije provedena. Uz pomoć umjetne inteligencije instalirala se i postavila `classla` i počelo se lematizirati 53 milijuna riječi, ali korpus je prevelik za računalo na kojem radimo. Ako je vjerovati procjeni, proces bi trajao nekoliko dana. Uz to, uzimati samo dio hrvatske Wikipedije ne daje reprezentativni korpus jer su članci poredani ili abecedno ili kronološki. Cijeli korpus ne možemo postaviti u repozitorij jer je maksimalna veličina datoteke 25 MB. Kome treba lematizirana hrvatska Wikipedija, morat će ponoviti kompletan proces i imati jako računalo.
+* **Lematizacija** lematizacija je provedena pomoću korpusa [hr500k](https://github.com/reldi-data) u pravoj ruci, u drugoj pomoću modula `classla` (programski jezik `python`). Naime skriptom `lematizacija-iz-hr500k.py` izvukle su se leme i pojavnice iz korpusa `hr500k`, usporedile su se sa bazom `čestotni-rječnik-hrWiki` i leme iz `hr500k` zalijepile su se na čestotni rječnik ako su se jedinstvene pojavnice podudarale. Naravno, one jedinstvene pojavnice koje nisu postojale u `hr500k` ostale su nelematizirane: to se riješilo modulom `classla`: učitala se datoteka `lematizirani-čestotni-rječnik-hrWiki`, ali i kompletan tekst sa hrWiki (dump), zatim se nelematizirane pojavnice tražilo u korpusu i obradilo `classlom` kako bi se dobile leme (skripta `lematizacija-s-classla-nakon-hr500k.py`). Lematizacija se radi u serijama jer hardver ne može prožvakati sve u jednom zalogaju.
 * **veliko i malo slovo** Rješilo se tako što se veliko i malo slovo u prvom prolazu kroz sirov tekst (dump) nije diralo. Zatim se u drugom prolazu usporedilo unakrsnim uspređivanjem (radi homonima i zaštite vlastitih imena) ponovno provjerilo nalaze li se riječi upisane velikim slovom isključivo velikim slovom na početku rečenice, a inače malim. Ako da, pretvorilo ih se u mala slova, ako se pak pojavljuju velikim slovom i u sredini rečenice, nije ih se diralo.
 
 ## Algoritam za ispravljanje velikoga i maloga slova
