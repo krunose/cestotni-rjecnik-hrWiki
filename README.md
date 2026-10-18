@@ -23,7 +23,7 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 
 Treba samo biti oprezan jer Calc ne može primiti više od 1 048 576 redaka. Izvući prvih milijun pojavnica moguće je na GNU/Linuxu iz naredbenoga retka naredbom `head -n 1000000 čestotni-rječnik-hrWiki > milijun-pojavnica`. Ako koga zanimaju hapoksi ili rijetke riječi općenito, kraj može izvući na GNU/Linuxu naredbom `tail -n 100000 čestotni-rječnik-hrWiki > sto-tisuća-zadnjih-pojavnica`.
 
-U programu za obradbu proračunskih tablica moguće je proširiti postotak relativne frekvencije kako bi se dobili relevantni podatci za riječi koje se ne ponavljaju često; za LibreOffice Calc to je formula `=(<apsolutna frekvencija riječi> / 53106215) * 100` i poveća se broj decimalnih za prikaz.
+U programu za obradbu proračunskih tablica moguće je proširiti postotak relativne frekvencije kako bi se dobili relevantni podatci za riječi koje se ne ponavljaju često; za LibreOffice Calc to je formula `=(<apsolutna frekvencija riječi> / 53106215) * 100` i poveća se broj decimalnih mjesta za prikaz.
 
 ## Metodologija obrade
 
