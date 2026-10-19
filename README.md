@@ -21,7 +21,7 @@ Ovaj projekt sadrži čestotni (frekvencijski) rječnik izrađen na temelju cjel
 
 U datoteci `čestotni-rječnik-hrWiki` **frekvencije** se odnose na **pojavnicu**, ne na lemu. Obrađene su sve riječi u hrvatskoj Wikipediji.
 
-U datoteci `sortirano-prema-učestalosti-leme` **frekvencije** su dane u odnosu na **lemu**, ali tako da se **nije uvrstilo** one leme čije pojavnice imaju **manje od 5 pojavljivanja** jer je takvih riječi previše i hardver koji imamo to ne bi izdržao.
+U datoteci `sortirano-prema-učestalosti-leme` **frekvencije** su dane u odnosu na **lemu**, ali tako da se **nije uvrstilo** one leme čije pojavnice imaju **manje od 5 pojavljivanja** jer je takvih riječi previše i hardver koji imamo to ne bi izdržao. A i brzim pregledom takvih riječi jasno je da bi lematizacija bila potpuno premašena (mahom strana i neprilagođena vlastita imena, toponimi, egzotizmi itd.)
 
 Treba samo biti oprezan jer Calc ne može primiti više od 1 048 576 redaka. Izvući prvih milijun pojavnica moguće je na GNU/Linuxu iz naredbenoga retka naredbom `head -n 1000000 čestotni-rječnik-hrWiki > milijun-pojavnica`. Ako koga zanimaju hapoksi ili rijetke riječi općenito, kraj može izvući na GNU/Linuxu naredbom `tail -n 100000 čestotni-rječnik-hrWiki > sto-tisuća-zadnjih-pojavnica`.
 
