@@ -6,8 +6,8 @@ debugging i provjera preformansi i memory leaks uz pomoć umjetne inteligencije
 
 **/
 
-$sourceFile = dirname(__DIR__) . '/prvih-milijun-pojavnica';
-$destFile = "sortedLemasByLemaFrequency";
+$sourceFile = dirname(__DIR__) . '/čestotni-rječnik-hrWiki/lematizirani-čestotni-rječnik-hrWiki';
+$destFile = "sortirano-prema-učestalosti-leme";
 
 $collectFrequences = array();
 
@@ -34,14 +34,14 @@ while (($line = fgets($sourceFileHandle)) !== false) {
     $explodeLine = explode("\t", $line);
 
     // Prvo provjeri postoje li ključevi na disku
-    if(isset($explodeLine[7]) && isset($explodeLine[1])) {
+    if(isset($explodeLine[6]) && isset($explodeLine[1])) {
 
         $frekvencija = intval(trim($explodeLine[1]));
 
         // Tvoj uvjet: Nastavi obradu samo ako je frekvencija veća ili jednaka 5
         if ($frekvencija >= 5) {
 
-            $lema = trim($explodeLine[7]);
+            $lema = trim($explodeLine[6]);
             $pojavnica = trim($explodeLine[5]);
 
         } else {
