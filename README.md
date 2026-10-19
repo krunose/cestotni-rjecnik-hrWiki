@@ -54,7 +54,7 @@ Nedostataka u rječniku vjerojatno ima još, ali nemamo sklopovlje ni vrijeme da
 
 ## Pomoć umjetne inteligencije
 
-Alate pisane programskim jezikom `pyhton` izradila je umjetna inteligencija jer baratamo samo programskim jezikom `PHP`. Modul `classla` radi samo s programskim jezikom `python`. Dio teksta `Algoritam za ispravljanje velikoga i maloga slova` napisala je također umjetna inteligencija prema mojim uputama i ispravljanjima (tekst je moderiran). Čovjek je osmislio algoritam, ali je umjetna inteligencija to pretočila u `pyhton` i objasnila vlastiti kôd.
+Alate pisane programskim jezikom `pyhton` izradila je umjetna inteligencija jer baratamo samo programskim jezikom `PHP`. Modul `classla` radi samo s programskim jezikom `python`. Alate pisane `PHP`-om umjetna inteligencija je optimizirala. Dio teksta `Algoritam za ispravljanje velikoga i maloga slova` napisala je također umjetna inteligencija prema mojim uputama i ispravljanjima (tekst je moderiran). Čovjek je osmislio algoritam, ali je umjetna inteligencija to pretočila u `pyhton` i objasnila vlastiti kôd.
 
 ## Licenca i izvori
 
